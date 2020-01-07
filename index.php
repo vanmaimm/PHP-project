@@ -121,7 +121,9 @@
                                                             hàng</a>
                                                     </p>
                                                     <p class="btn-details">
-                                                        <i class="fa fa-list"></i><a href="#" class="hidden-sm">Chi
+                                                        <i class="fa fa-list"></i><a
+                                                            href="detail.php?quanly=detail&id=<?php echo $row1['id']?>"
+                                                            class="hidden-sm">Chi
                                                             tiết</a>
                                                     </p>
                                                 </div>
@@ -172,7 +174,9 @@
                                                             hàng</a>
                                                     </p>
                                                     <p class="btn-details">
-                                                        <i class="fa fa-list"></i><a href="#" class="hidden-sm">Chi
+                                                        <i class="fa fa-list"></i><a
+                                                            href="detail.php?quanly=detail&id=<?php echo $row1['id']?>"
+                                                            class="hidden-sm">Chi
                                                             tiết</a>
                                                     </p>
                                                 </div>
@@ -222,7 +226,9 @@
                                                             hàng</a>
                                                     </p>
                                                     <p class="btn-details">
-                                                        <i class="fa fa-list"></i><a href="#" class="hidden-sm">Chi
+                                                        <i class="fa fa-list"></i><a
+                                                            href="detail.php?quanly=detail&id=<?php echo $row1['id']?>"
+                                                            class="hidden-sm">Chi
                                                             tiết</a>
                                                     </p>
                                                 </div>

@@ -29,15 +29,15 @@
     <hr>
     <div class="container">
         <div class="name-page">
-            <h6><a href="Trang chủ">Trang chủ</a><span> / <?php echo htmlentities($row['name']);?></span></h6>
+            <h6><a href="index.php">Trang chủ</a><span> / <?php echo htmlentities($row['name']);?></span></h6>
 
         </div>
         <br>
         <div class="row">
-            <div class="col-md-8 left">
+            <div class="col-md-8 left" >
                 <div class="row">
                     <div class="col-md-8">
-                        <img src="image-product/3/dinh-da-vip.jpg" style="width:100%;height:auto" alt="">
+                        <img src="image-product/<?php echo htmlentities($row['category_id']);?>/<?php echo htmlentities($row['image']);?>" style="width:100%;height:auto" alt="">
                     </div>
                     <div class="col-md-4">
                         <div>
@@ -56,12 +56,19 @@
                         <div class="desc"><?php echo htmlentities($row['decription']);?> </div>
                         <a href="">Mua ngay</a>
                         <a href="">Thêm vào giỏ hàng</a>
-                        
+
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" style="background-color:yellow">
-                rtr
+            <div class="col-md-3" style="border:1px solid black">
+                <h5>Thời gian nhận hàng</h5>
+                <div>Từ 1 ngày - 5 ngày</div>
+                <ul>
+                    <li><img src="image-page/transport.png" alt=""> Vận chuyển toàn quốc</li>
+                    <li><img src="image-page/exchange.png" alt=""> Đổi trả trong vòng 7 ngày</li>
+                    <li><img src="image-page/pay-money.png" alt=""> Thanh toán khi nhận hàng</li>
+                    <li><img src="image-page/phone.png" alt=""> Hot line: 1900 1717 71</li>
+                </ul>
             </div>
         </div>
     </div>

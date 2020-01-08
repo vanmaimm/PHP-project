@@ -1,6 +1,23 @@
 <?php 
   session_start();
   include "includes/dbconnection.php";
+  if(isset($_GET['action']) && $_GET['action']=="add"){
+	$id=intval($_GET['id']);
+	if(isset($_SESSION['cart'][$id])){
+		$_SESSION['cart'][$id]['quantity']++;
+	}else{
+		$sql_p="SELECT * FROM products WHERE id= $id";
+		$query_p=mysqli_query($con,$sql_p);
+		if(mysqli_num_rows($query_p)!=0){
+			$row_p=mysqli_fetch_array($query_p);
+            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
+            echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
+			header('location:index.php');
+		}else{
+			$message="Product ID is invalid";
+		}
+	}
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +50,7 @@
                     <h3 class="title">----------------------------------------GIÀY CAO
                         GÓT----------------------------------------
                     </h3>
-                    <span class="more"><a href="">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=giay-cao-got">>>Xem thêm<<</a> </span> <br>
                                 <?php 
                       $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày cao gót" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
@@ -62,7 +79,8 @@
                                             <div class="info">
                                                 <div class="separator clear-left">
                                                     <p class="btn-add">
-                                                        <i class="fa fa-shopping-cart"></i><a href="#"
+                                                        <i class="fa fa-shopping-cart"></i><a
+                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>"
                                                             class="hidden-sm">Thêm vào giỏ
                                                             hàng</a>
                                                     </p>
@@ -116,7 +134,8 @@
                                             <div class="info">
                                                 <div class="separator clear-left">
                                                     <p class="btn-add">
-                                                        <i class="fa fa-shopping-cart"></i><a href="#"
+                                                        <i class="fa fa-shopping-cart"></i><a
+                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>"
                                                             class="hidden-sm">Thêm vào giỏ
                                                             hàng</a>
                                                     </p>
@@ -169,7 +188,8 @@
                                             <div class="info">
                                                 <div class="separator clear-left">
                                                     <p class="btn-add">
-                                                        <i class="fa fa-shopping-cart"></i><a href="#"
+                                                        <i class="fa fa-shopping-cart"></i><a
+                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>"
                                                             class="hidden-sm">Thêm vào giỏ
                                                             hàng</a>
                                                     </p>
@@ -193,7 +213,7 @@
                     <h3 class="title">
                         ------------------------------------------SANDAL------------------------------------------
                     </h3>
-                    <span class="more"><a href="">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="sandal.php">>>Xem thêm<<</a> </span> <br>
                                 <?php 
                       $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Sandal" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
@@ -221,7 +241,8 @@
                                             <div class="info">
                                                 <div class="separator clear-left">
                                                     <p class="btn-add">
-                                                        <i class="fa fa-shopping-cart"></i><a href="#"
+                                                        <i class="fa fa-shopping-cart"></i><a
+                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>"
                                                             class="hidden-sm">Thêm vào giỏ
                                                             hàng</a>
                                                     </p>

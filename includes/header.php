@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="cart">
-                            <a href="" class="basket"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <a href="card.php" class="basket"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         <span class='quantity-cart'>0</span>
                         </a>
                         </div>

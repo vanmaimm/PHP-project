@@ -1,13 +1,13 @@
 <?php 
   session_start();
   include "includes/dbconnection.php";
-if (isset($_GET['del'])) {
+  if (isset($_GET['del'])) {
     $name = $_GET['name'];
     if (!empty($_SESSION['cart'])){
         unset($_SESSION['cart'][$name]);
     } 
-	header('location: card.php');
-}
+    header('location: card.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">

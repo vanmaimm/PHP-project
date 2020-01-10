@@ -4,6 +4,21 @@
   $sql = "SELECT products.*,categories.categoryName FROM products JOIN categories ON categories.id=products.category_id  WHERE products.id = '$_GET[id]' ";
     $result = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($result);
+    if(isset($_GET['action']) && $_GET['action']=="add"){
+        $id=intval($_GET['id']);
+        if(isset($_SESSION['cart'][$id])){
+            $_SESSION['cart'][$id]['quantity']++;
+        }else{
+            $sql_p="SELECT * FROM products WHERE id= $id";
+            $query_p=mysqli_query($con,$sql_p);
+            if(mysqli_num_rows($query_p)!=0){
+                $row_p=mysqli_fetch_array($query_p);
+                $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
+                echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
+                header('location:detail.php?quanly=detail&id=<?php echo $$row_p["id"]?>');
+            }
+        }
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -55,7 +70,7 @@
                         </div>
                         <div class="desc"><?php echo htmlentities($row['decription']);?> </div>
                         <a href="">Mua ngay</a>
-                        <a href="">Thêm vào giỏ hàng</a>
+                        <a href="detail.php?page=product&action=add&id=<?php echo $row['id']; ?>">Thêm vào giỏ hàng</a>
 
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php 
   session_start();
   include "includes/dbconnection.php";
+  
 ?>
 <!doctype html>
 <html lang="en">

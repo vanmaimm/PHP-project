@@ -13,8 +13,6 @@
             $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
             echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
 			header('location:index.php');
-		}else{
-			$message="Product ID is invalid";
 		}
 	}
 }
@@ -101,7 +99,7 @@
                 <br>
                 <div id="the-thao">
                     <h3 class="title">----------------------------------------GIÀY THỂ
-                        THAO------------------------------
+                        THAO---------------------------------
                     </h3>
                     <span class="more"><a href="">>>Xem thêm<<</a> </span> <br>
                                 <?php 
@@ -213,7 +211,7 @@
                     <h3 class="title">
                         ------------------------------------------SANDAL------------------------------------------
                     </h3>
-                    <span class="more"><a href="sandal.php">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=sandal">>>Xem thêm<<</a> </span> <br>
                                 <?php 
                       $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Sandal" LIMIT 4';
                       $result1=mysqli_query($con, $select1);

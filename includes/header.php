@@ -70,7 +70,25 @@
                     <div class="col-md-1">
                         <div class="cart">
                             <a href="card.php" class="basket"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                        <span class='quantity-cart'>0</span>
+                    <?php 
+                        $totalquantity=0;
+                        if(isset($_SESSION['cart'])&& $_SESSION['cart']!=null){     
+                            $sql="SELECT * FROM products WHERE id IN (";     
+                                foreach($_SESSION['cart'] as $id => $value) { 
+                                    $sql.=$id.","; 
+                                }   
+                                $sql=substr($sql, 0, -1).") ORDER BY name ASC"; 
+                                $query=mysqli_query($con,$sql); 
+                                $totalprice=0;
+                                $totalquantity=0;
+                                while($row=mysqli_fetch_array($query)){
+                                   $subtotal= $_SESSION['cart'][$row['id']]['quantity']*$row['price'];
+                                   $totalprice+=$subtotal;
+                                   $totalquantity+=$_SESSION['cart'][$row['id']]['quantity'];
+                                } ?>
+                                
+                            <?php }?>
+                            <span class='quantity-cart'><?php echo $totalquantity?></span>
                         </a>
                         </div>
                     </div>

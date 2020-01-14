@@ -1,9 +1,10 @@
 <?php 
   session_start();
+  error_reporting(0);
   include "includes/dbconnection.php";
   $sql = "SELECT products.*,categories.categoryName FROM products JOIN categories ON categories.id=products.category_id  WHERE products.id = '$_GET[id]' ";
     $result = mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($result);
+  //  $row1 = mysqli_fetch_assoc($result);
     if(isset($_GET['action']) && $_GET['action']=="add"){
         $id=intval($_GET['id']);
         if(isset($_SESSION['cart'][$id])){
@@ -16,15 +17,15 @@
                 $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
                 echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
                 header('location:detail.php?quanly=detail&id=<?php echo $$row_p["id"]?>');
-            }
-        }
-    }
+}
+}
+}
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Vian Shop - <?php echo htmlentities($row['name']);?></title>
+    <title>Vian Shop - <?php echo htmlentities($row1['name']);?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,19 +41,20 @@
     <?php 
     include "includes/top-header.php";
     include 'includes/header.php';
+    $row = mysqli_fetch_array($result);
    ?>
     <hr>
     <div class="container">
         <div class="name-page">
             <h6><a href="index.php">Trang chủ</a><span> / <?php echo htmlentities($row['name']);?></span></h6>
-
         </div>
         <br>
         <div class="row">
-            <div class="col-md-8 left" >
+            <div class="col-md-8 left">
                 <div class="row">
                     <div class="col-md-8">
-                        <img src="image-product/<?php echo htmlentities($row['category_id']);?>/<?php echo htmlentities($row['image']);?>" style="width:100%;height:auto" alt="">
+                        <img src="image-product/<?php echo htmlentities($row['category_id']);?>/<?php echo htmlentities($row['image']);?>"
+                            style="width:100%;height:auto" alt="">
                     </div>
                     <div class="col-md-4">
                         <div>
@@ -70,8 +72,7 @@
                         </div>
                         <div class="desc"><?php echo htmlentities($row['decription']);?> </div>
                         <a href="">Mua ngay</a>
-                        <a href="detail.php?page=product&action=add&id=<?php echo $row['id']; ?>">Thêm vào giỏ hàng</a>
-
+                        <a href="detail.php?page=product&action=add & id=<?php echo $row['id']; ?>">Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>

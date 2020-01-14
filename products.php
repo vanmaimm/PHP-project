@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  error_reporting(0);
   include "includes/dbconnection.php";
   
 ?>
@@ -31,13 +32,26 @@
         </div>
         <br>
         <?php 
-            $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Sandal" ';
+            if ($_GET['name'] == 'giay-cao-got'){
+                $name = 'Giày cao gót';
+            }
+            else if ($_GET['name'] == 'giay-the-thao')
+            {
+                $name ="Giày thể thao";
+            }
+            else if ($_GET['name'] == 'giay-bup-be'){
+                $name='Giày búp bê';
+            }
+            else{
+                $name='Sandal';
+            }
+            $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "'.$name.'" ';
             $result1=mysqli_query($con, $select1);
         ?>
         <div class="row">
             <?php  while($row1=mysqli_fetch_array($result1)){?>
             <div class="col-sm-3">
-            <br>
+                <br>
                 <div class="col-item">
                     <div class="photo">
                         <img src="image-product/<?php echo htmlentities($row1['category_id']);?>/<?php echo htmlentities($row1['image']);?> "
@@ -75,6 +89,7 @@
             <?php }?>
         </div>
     </div>
+    bs3-card
     <?php include 'includes/footer.php';?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

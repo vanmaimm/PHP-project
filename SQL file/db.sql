@@ -1,5 +1,4 @@
- CREATE DATABASE shoes_vianshop1;
- USE shoes_vianshop1;
+
 CREATE TABLE admin(
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(50) NOT NULL,
@@ -87,6 +86,11 @@ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 total FLOAT NOT NULL,
 date_order DATE,
 status TEXT DEFAULT NULL,
+customerName VARCHAR(100) NOT NULL,
+phoneNumber VARCHAR(15) NOT NULL,
+address VARCHAR(500) NOT NULL,
+email VARCHAR(100) NOT NULL,
+payMent VARCHAR(100) NOT NULL,
 user_id INT);
 
 CREATE TABLE order_details(
@@ -96,18 +100,21 @@ quantity INT NOT NULL,
 PRIMARY KEY(order_id,product_id)
 );
 
-CREATE TABLE wishlish(
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE wishlist(
+id_wishlist INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 user_id INT,
 product_id INT,
-posting_date DATE
+posting_date DATE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE userLog(
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-userId INT NOT NULL,
+userId INT DEFAULT NULL,
 username VARCHAR(50),
 userIp VARCHAR(255),
 action VARCHAR(255)
 );
+
+ALTER TABLE products  
+ADD FULLTEXT(name);
 

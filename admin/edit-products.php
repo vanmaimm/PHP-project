@@ -1,4 +1,5 @@
 <?php 
+  error_reporting(0);
  include "include/dbconnection.php";
 session_start();
 if(strlen($_SESSION['alogin'])==0)

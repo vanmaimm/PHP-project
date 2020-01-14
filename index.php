@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  error_reporting(0);
   include "includes/dbconnection.php";
   if(isset($_GET['action']) && $_GET['action']=="add"){
 	$id=intval($_GET['id']);
@@ -15,6 +16,17 @@
 			header('location:index.php');
 		}
 	}
+}
+if(isset($_GET['action']) && $_GET['action']=="wishlist"){
+    $id=$_GET['id'];
+    if(strlen($_SESSION['ulogin'])==0)
+    {   
+    header('location:login.php');
+    }else{
+        mysqli_query($con,"INSERT INTO wishlist(user_id,product_id) VALUES ('".$_SESSION['id']."','$id')");
+        echo "<script>alert('Sản phẩm đã được thêm vào danh sách yêu thích!');</script>";
+        header('location:index.php');
+    }	
 }
 ?>
 <!doctype html>
@@ -70,6 +82,12 @@
 
                                                         <h5 class="price-text-color">
                                                             <?php echo htmlentities($row1['price']);?> đ
+                                                            <span>
+                                                                <a
+                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
+                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                            </span>
                                                         </h5>
                                                     </div>
                                                 </div>
@@ -101,7 +119,7 @@
                     <h3 class="title">----------------------------------------GIÀY THỂ
                         THAO---------------------------------
                     </h3>
-                    <span class="more"><a href="">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=giay-the-thao">>>Xem thêm<<</a> </span> <br>
                                 <?php 
                       $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày thể thao" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
@@ -125,6 +143,12 @@
 
                                                         <h5 class="price-text-color">
                                                             <?php echo htmlentities($row1['price']);?> đ
+                                                            <span>
+                                                                <a
+                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
+                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                            </span>
                                                         </h5>
                                                     </div>
                                                 </div>
@@ -157,7 +181,7 @@
                     <h3 class="title">----------------------------------------GIÀY BÚP
                         BÊ----------------------------------------
                     </h3>
-                    <span class="more"><a href="">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=giay-bup-be">>>Xem thêm<<</a> </span> <br>
                                 <?php 
                       $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày búp bê" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
@@ -179,6 +203,12 @@
 
                                                         <h5 class="price-text-color">
                                                             <?php echo htmlentities($row1['price']);?> đ
+                                                            <span>
+                                                                <a
+                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
+                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                            </span>
                                                         </h5>
                                                     </div>
                                                 </div>
@@ -232,6 +262,12 @@
                                                         </h5>
                                                         <h5 class="price-text-color">
                                                             <?php echo htmlentities($row1['price']);?> đ
+                                                            <span>
+                                                                <a
+                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
+                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                            </span>
                                                         </h5>
                                                     </div>
                                                 </div>
